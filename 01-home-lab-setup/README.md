@@ -1,4 +1,5 @@
 Phase One Report — Cybersecurity Home Lab Setup
+
 Author: Naheema Shafau  
 Date: November 2025  
 **Environment:** VirtualBox, Kali Linux, Metasploitable2, Windows 11 Host
