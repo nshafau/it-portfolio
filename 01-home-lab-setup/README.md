@@ -1,131 +1,173 @@
-Phase One Report — Cybersecurity Home Lab Setup
+# Lab 01 — Home Lab Environment Setup
 
-Author: Naheema Shafau  
-Date: November 2025  
-**Environment:** VirtualBox, Kali Linux, Metasploitable2, Windows 11 Host
----
- 1. Executive Summary
-This document provides a professional overview of the design, configuration, and validation of a local penetration testing lab environment. The lab simulates a realistic attacker–victim topology using Kali Linux as the offensive security platform and Metasploitable2 as the intentionally vulnerable target system.
-
-By configuring VirtualBox networking, verifying guest connectivity, and validating host service accessibility, the lab provides a safe and isolated environment for penetration testing exercises, vulnerability research, and skill development.
+**Author:** Naheema Shafau
+**Date:** November 2025
+**Environment:** VirtualBox | Kali Linux | Metasploitable2 | Windows 11 Host
 
 ---
 
- 2. Objectives
-- Deploy a **Kali Linux attacker VM**
-- Deploy a **Metasploitable2 vulnerable VM**
-- Configure **VirtualBox networking** correctly
-- Ensure both systems are reachable and discoverable
-- Validate the lab environment through connectivity and scanning
+## Overview
+
+This lab documents the design and configuration of a local virtualized 
+lab environment used for hands-on IT and security skills development. 
+
+Using VirtualBox as the hypervisor, I deployed two virtual machines — 
+a Kali Linux system and a Metasploitable2 target — configured network 
+connectivity between them, and validated the environment through 
+scanning and discovery tools.
+
+This environment serves as the foundation for all subsequent labs in 
+this portfolio.
 
 ---
- 3. Tools + Technologies
+
+## Objectives
+
+- Deploy and configure a Kali Linux virtual machine
+- Deploy a Metasploitable2 vulnerable target VM
+- Configure VirtualBox networking for inter-VM communication
+- Validate connectivity using ping and Nmap
+- Establish a stable, isolated lab environment for future exercises
+
+---
+
+## Tools & Technologies
+
 | Component | Purpose |
-|----------|---------|
-| **VirtualBox** | Hypervisor for virtual machines |
-| **Kali Linux** | Attacker system (penetration testing distro) |
-| **Metasploitable2** | Vulnerable target system |
-| **Bridged Adapter Networking** | Places both VMs on same LAN |
-| **Nmap** | Scanning & discovery |
-| **Ping / ICMP** | Connectivity validation |
+|-----------|---------|
+| VirtualBox | Hypervisor — hosts all virtual machines |
+| Kali Linux | Primary lab workstation / security toolkit |
+| Metasploitable2 | Intentionally vulnerable target for testing |
+| Bridged Adapter | Network mode enabling inter-VM communication |
+| Nmap | Network scanning and service discovery |
+| Ping / ICMP | Basic connectivity validation |
 
 ---
 
- 4. Lab Topology
-
+## Lab Topology
 ```
 [ Windows 11 Host ]
-        |
-   VirtualBox
-        |
--------------------------------------
-|           |                      |
-Kali VM  <--->  Same Network  <---> Metasploitable2 VM
--------------------------------------
+         |
+    VirtualBox
+         |
+   ──────────────────────
+   |                    |
+Kali Linux  ←——→  Metasploitable2
+(Attacker)         (Target)
+   ──────────────────────
+   Both VMs on Bridged Adapter — same LAN
 ```
 
-Both VMs ultimately operated in **Bridged Adapter** mode, receiving IP addresses directly from the physical LAN, enabling:
-
-- Ping communication  
-- Nmap scanning  
-- Exploitation (Phase Two)
-
 ---
-5. VM Installations
 
-5.1 Kali Linux Installation
-Actions performed:
-- Imported Kali ISO into VirtualBox  
-- Set 4 GB RAM, 2 CPU cores  
-- Created 30–40 GB virtual disk  
-- Performed full graphical installation  
-- Installed GRUB bootloader  
-- Verified successful login into Xfce desktop environment  
+## Step 1 — Kali Linux Installation
 
-5.2 Metasploitable2 Installation
-Actions performed:
-- Extracted `.vmdk` disk image  
-- Attached disk to new VirtualBox VM  
-- Allocated ~512 MB RAM  
-- Disabled EFI  
-- Verified Metasploitable2 terminal login screen  
-- Set default credentials (`msfadmin/msfadmin`)  
+**Actions performed:**
+- Imported Kali Linux ISO into VirtualBox
+- Allocated 4GB RAM, 2 CPU cores, 30GB virtual disk
+- Completed full graphical installation
+- Installed GRUB bootloader
+- Verified successful login to Xfce desktop environment
+
+📸 *Screenshot: Kali Linux desktop after successful install*
 
 ---
 
-6. Networking Configuration
+## Step 2 — Metasploitable2 Installation
 
-6.1 Initial Issues
+**Actions performed:**
+- Extracted `.vmdk` disk image
+- Attached disk image to new VirtualBox VM
+- Allocated 512MB RAM
+- Disabled EFI boot
+- Verified Metasploitable2 login screen with default credentials
 
-Early attempts using NAT and Hyper-V resulted in:
-- Loopback-only IPs (`127.0.0.1`)  
-- No DHCP assignment  
-- No inter-VM communication  
-
-These issues were resolved after moving **both VMs to VirtualBox Bridge Mode**.
-
-6.2 Final Networking Mode (Working Configuration)
-Adapter Mode: Bridged Adapter  
-Result: Both VMs received valid LAN IPs:
-
-- **Kali:** `192.168.1.x`  
-- **Metasploitable2:** `192.168.1.141`  
+📸 *Screenshot: Metasploitable2 terminal login screen*
 
 ---
- 7. Connectivity Validation
 
-7.1 Ping Response
-Kali successfully pinged Metasploitable2:
+## Step 3 — Network Configuration
 
-```
+### Initial Problems Encountered
+
+| Attempt | Mode Used | Result |
+|---------|-----------|--------|
+| 1st | NAT | Loopback IP only (127.0.0.1) — no inter-VM communication |
+| 2nd | Hyper-V | No DHCP assignment — VMs couldn't see each other |
+| 3rd | Bridged Adapter | ✅ Both VMs received valid LAN IPs |
+
+> **Note:** Documenting failed attempts is intentional — 
+> troubleshooting and resolving configuration issues is a 
+> core IT support skill.
+
+### Working Configuration
+
+- **Adapter Mode:** Bridged Adapter
+- **Kali IP:** 192.168.1.x
+- **Metasploitable2 IP:** 192.168.1.141
+
+📸 *Screenshot: VirtualBox network settings showing Bridged Adapter*
+
+---
+
+## Step 4 — Connectivity Validation
+
+### Ping Test
+```bash
 ping -c 4 192.168.1.141
 ```
+📸 *Screenshot: Successful ping response from Metasploitable2*
 
-7.2 Nmap Discovery
-```
+### Nmap Service Scan
+```bash
 nmap -sV 192.168.1.141
 ```
-
-Results confirmed that the target was reachable and running multiple open ports.
-
-This validated that the environment was ready for **Phase Two exploitation**.
-
----
-8. Screenshots / Evidence
-
-Recommended screenshots for GitHub:
-- VirtualBox VM list  
-- Network settings (Bridged mode)  
-- Kali desktop after installation  
-- Metasploitable2 IP address  
-- Ping success  
-- Nmap results  
+📸 *Screenshot: Nmap scan results showing open ports and services*
 
 ---
 
- 9. Conclusion
-This phase successfully established a complete penetration testing environment suitable for practicing scanning, exploitation, and post-exploitation activities. The environment is isolated, stable, and designed to emulate real-world attack workflows, laying the foundation for future cybersecurity projects and professional growth.
+## Issues & Troubleshooting Log
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| VMs couldn't communicate | NAT mode isolates VMs | Switched to Bridged Adapter |
+| No IP assigned via Hyper-V | Hyper-V conflict with VirtualBox | Disabled Hyper-V in Windows features |
+| Metasploitable2 wouldn't boot | EFI enabled | Disabled EFI in VM settings |
 
 ---
 
-*End of Report*
+## Results
+
+✅ Kali Linux VM deployed and operational
+✅ Metasploitable2 VM deployed and accessible
+✅ Inter-VM communication confirmed via ping
+✅ Network services confirmed via Nmap scan
+✅ Lab environment ready for subsequent exercises
+
+---
+
+## Key Takeaways
+
+- Hypervisor networking modes behave differently — 
+  understanding NAT vs Bridged vs Host-Only is essential 
+  for lab and enterprise environments
+- Troubleshooting network configuration requires systematic 
+  testing and documentation of each attempt
+- Virtual lab environments mirror real-world IT infrastructure 
+  challenges at smaller scale
+
+---
+
+## Screenshots
+
+> Add your screenshots here by dragging images into the 
+> GitHub editor when viewing this file
+
+| # | Description |
+|---|-------------|
+| 1 | VirtualBox VM list showing both machines |
+| 2 | Kali Linux desktop after install |
+| 3 | Metasploitable2 login screen |
+| 4 | Bridged Adapter network settings |
+| 5 | Successful ping to Metasploitable2 |
+| 6 | Nmap scan results |
