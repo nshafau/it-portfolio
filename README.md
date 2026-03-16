@@ -1,44 +1,51 @@
-# IT Portfolio — Naheema Shafau
-
-Welcome to my hands-on IT portfolio. This repository contains practical labs, troubleshooting scenarios, and projects demonstrating skills in:
-
- 🔧 Technical Skills
-- Windows 10/11 troubleshooting  
-- Active Directory (users, groups, OU structure, GPOs)  
-- Microsoft 365 & Azure AD (MFA, cloud identities, licenses)  
-- Networking (DNS, DHCP, VPN basics)  
-- PowerShell scripting & automation  
-- Security fundamentals
+IT Support & Cybersecurity Portfolio
+Naheema Shafau | CompTIA Network+ | Security+ | CySA+
 
 ---
 
- 📁 Project Index
+About Me
 
- 1. **Home Lab Setup**
-Virtual environment built with VirtualBox/Hyper-V to run Windows Server, Windows 11, and Linux for IT practice.
+IT professional transitioning from Construction Management into 
+IT Support and Cybersecurity. My background in project coordination, 
+stakeholder communication, and operational problem-solving gives me 
+a practical edge in fast-paced support environments.
 
- 2. **Active Directory Lab**
-Creating a domain, adding users/groups, OU design, GPO policies, and domain join troubleshooting.
-
- 3. **Microsoft 365 / Azure AD Lab**
-Cloud identity creation, MFA setup, license management, and admin center tasks.
-
- 4. **Networking Lab**
-Network segmentation, testing DHCP/DNS, traceroutes, pings, and subnetting practice.
-
- 5. **PowerShell Automation**
-Scripts to automate common IT tasks such as user creation, reporting, and cleanup.
-
- 6. **Ticketing & Troubleshooting Simulations**
-Practice tickets with real triage, root cause analysis, and resolution documentation.
+This portfolio documents hands-on labs I've built and completed 
+covering IT support, systems administration, networking, and security.
 
 ---
 
-Each project folder contains:
-- Step-by-step walkthroughs  
-- Screenshots  
-- Commands/scripts  
-- Troubleshooting notes  
-- What I learned  
+Certifications
 
-This portfolio is continuously updated as I complete more labs.
+| Certification | Issuer | Status |
+|--------------|--------|--------|
+| CompTIA CySA+ | CompTIA | ✅ Earned |
+| CompTIA Security+ | CompTIA | ✅ Earned |
+| CompTIA Network+ | CompTIA | ✅ Earned |
+
+---
+
+## Labs
+
+| # | Lab | Skills Demonstrated | Status |
+|---|-----|-------------------|--------|
+| 01 | [Home Lab Setup](./01-home-lab-setup) | VirtualBox, Kali Linux, Network Configuration, Nmap | ✅ Complete |
+| 02 | [Active Directory Lab](./02-active-directory-lab) | User Management, Group Policy, DNS, Password Resets | In Progress |
+| 03 | [M365 & Azure AD Lab](./03-m365-azuread-lab) | Microsoft 365 Admin, Azure Active Directory, User Provisioning |In Progress |
+| 04 | [Networking Lab](./04-networking-lab) | DNS, DHCP, Wireshark, Troubleshooting Workflows | In Progress |
+| 05 | [PowerShell Automation](./05-powershell-automation) | Scripting, User Automation, System Administration |In Progress |
+| 06 | [Ticketing Simulations](./06-ticketing-simulations) | osTicket, Ticket Lifecycle, Help Desk Workflows | In Progress |
+
+---
+
+## Tools & Technologies
+
+`VirtualBox` `Kali Linux` `Windows Server` `Active Directory`
+`Microsoft 365` `Azure AD` `PowerShell` `Wireshark` `Nmap` `Linux CLI`
+
+---
+
+## Contact
+
+- 📧 Nshafau@gmail.com
+- 💼www.linkedin.com/in/naheema-s-01018254
