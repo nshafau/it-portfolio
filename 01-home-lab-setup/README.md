@@ -69,7 +69,7 @@ Kali Linux  ←——→  Metasploitable2
 - Installed GRUB bootloader
 - Verified successful login to Xfce desktop environment
 
-📸 ![VirtualBox VM List](./02-kali-network-settings.png.png)
+📸 ![VirtualBox VM List](./03-kali-desktop.png)
 
 ---
 
@@ -82,7 +82,7 @@ Kali Linux  ←——→  Metasploitable2
 - Disabled EFI boot
 - Verified Metasploitable2 login screen with default credentials
 
-📸 *Screenshot: 04-metasploitable2-login.png
+📸 ![VirtualBox VM List](./04-metasploitable2-login.png)
 
 ---
 
@@ -106,23 +106,20 @@ Kali Linux  ←——→  Metasploitable2
 - **Kali IP:** 192.168.1.x
 - **Metasploitable2 IP:** 192.168.1.141
 
-📸 *Screenshot: 02-kali-network-settings.png.png
-
----
-
+📸 ![VirtualBox VM List](./02-kali-network-settings.png.png)
 ## Step 4 — Connectivity Validation
 
 ### Ping Test
 ```bash
 ping -c 4 192.168.1.141
 ```
-📸 *Screenshot: 06-ping-results.png.png
+📸 ![VirtualBox VM List](./06-ping-results.png.png)
 
 ### Nmap Service Scan
 ```bash
 nmap -sV 192.168.1.141
 ```
-📸 *Screenshot: 07-nmap-results-.png
+📸 ![VirtualBox VM List](./07-nmap-results.png)
 
 ---
 
@@ -159,9 +156,6 @@ nmap -sV 192.168.1.141
 ---
 
 ## Screenshots
-
-> Add your screenshots here by dragging images into the 
-> GitHub editor when viewing this file
 
 | # | Description |
 |---|-------------|
