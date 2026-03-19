@@ -69,7 +69,7 @@ Kali Linux  ←——→  Metasploitable2
 - Installed GRUB bootloader
 - Verified successful login to Xfce desktop environment
 
-📸 *Screenshot: 03-kali-desktop.png
+📸 ![VirtualBox VM List](./02-kali-network-settings.png.png)
 
 ---
 
